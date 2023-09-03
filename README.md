@@ -20,10 +20,10 @@ For example, the following creates a Node with the following structure:
 
 ```svelte
 <Node direction="horizontal">
-    <Window slot="alpha" number={1} />
-    <Node slot="beta" direction="vertical">
-        <Window slot="alpha" number={2} />
-        <Window slot="beta" number={3} />
-    </Node>
+	<Window slot="alpha" number={1} />
+	<Node slot="beta" direction="vertical">
+		<Window slot="alpha" number={2} />
+		<Window slot="beta" number={3} />
+	</Node>
 </Node>
 ```
