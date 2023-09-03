@@ -1,11 +1,14 @@
-<!-- 
-    This is a component for the demo.
-    
-    TODO: maybe display some cooler widgets and things?
--->
 <script lang="ts">
+	import MdAddCircle from 'svelte-icons/md/MdAddCircle.svelte';
+	import MdRemoveCircle from 'svelte-icons/md/MdRemoveCircle.svelte';
+
 	export let number = 1;
 </script>
+
+<div class="nav">
+	<button><MdRemoveCircle /></button>
+	<button><MdAddCircle /></button>
+</div>
 
 <div class="container">
 	<h1>W<span class="i">i</span>ndow {number}</h1>
@@ -15,6 +18,18 @@
 </div>
 
 <style>
+	button {
+		height: 3rem;
+	}
+
+	.nav {
+		background-color: #eee;
+		padding: 1rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
 	.container {
 		margin: 2rem;
 		text-align: center;

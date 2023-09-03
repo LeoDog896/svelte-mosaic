@@ -27,3 +27,14 @@ For example, the following creates a Node with the following structure:
 	</Node>
 </Node>
 ```
+
+### Illegal structures
+
+:x: A `Node` cannot have more than two children.
+
+### Internals
+
+Because the API is very simple and doesn't require child-parent passing, we need to keep
+track of the tree structure ourselves.
+
+Whenever a `Node` is constructed, it backpropagates itself to its parents, giving each `Node` a reference to its parent.

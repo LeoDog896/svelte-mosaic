@@ -11,7 +11,7 @@
 		<h1 class="name">svelte-mosa<span class="i">i</span>c</h1>
 		<p>svelte's w<span class="i">i</span>ndow manager</p>
 	</div>
-    <h1>demo: streaml<span class="i">i</span>ned</h1>
+	<h1>demo: streaml<span class="i">i</span>ned</h1>
 	<div class="icons">
 		<a href="https://github.com/LeoDog896/svelte-mosaic"><DiGithubBadge /></a>
 		<a href="https://npmjs.com/package/svelte-mosaic"><DiNpm /></a>
@@ -38,17 +38,17 @@
 
 	.icons {
 		height: 5rem;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-right: 1rem;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin-right: 1rem;
 	}
 
-    a {
-        display: block;
-        height: 5rem;
-        color: white;
-    }
+	a {
+		display: block;
+		height: 5rem;
+		color: white;
+	}
 
 	.title {
 		display: flex;
