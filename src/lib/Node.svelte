@@ -1,4 +1,5 @@
 <script lang="ts">
+	/** The orientation of the element */
 	export let direction: 'horizontal' | 'vertical';
 
 	let wrapper: HTMLDivElement;
@@ -30,9 +31,9 @@
 			const pointerRelativePos = pos - containerOffset;
 
 			if (direction === 'horizontal') {
-				alpha.style.width = pointerRelativePos - 1.5 + 'px';
+				alpha.style.width = pointerRelativePos - 4 + 'px';
 			} else {
-				alpha.style.height = pointerRelativePos - 1.5 + 'px';
+				alpha.style.height = pointerRelativePos - 4 + 'px';
 			}
 
 			alpha.style.flexGrow = '0';
@@ -69,17 +70,18 @@
 	}
 
 	.sash {
-		background-color: #ccc;
+		background-color: #ddd;
+		box-sizing: border-box;
 	}
 
 	.sash-horizontal {
-		width: 3px;
+		width: 8px;
 		height: 100%;
 		cursor: ew-resize;
 	}
 
 	.sash-vertical {
-		height: 3px;
+		height: 8px;
 		width: 100%;
 		cursor: ns-resize;
 	}
