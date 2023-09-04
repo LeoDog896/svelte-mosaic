@@ -1,6 +1,7 @@
 <script lang="ts">
 	import DiGithubBadge from 'svelte-icons/di/DiGithubBadge.svelte';
 	import DiNpm from 'svelte-icons/di/DiNpm.svelte';
+	import FaviconLight from './favicon-light.png';
 
 	import Node from '$lib';
 	import Window from './Window.svelte';
@@ -8,8 +9,11 @@
 
 <header>
 	<div class="title child">
-		<h1 class="name">svelte-mosa<span class="i">i</span>c</h1>
-		<p>svelte's w<span class="i">i</span>ndow manager</p>
+		<img src={FaviconLight} class="logo" alt="Svelte logo" />
+		<div class="description">
+			<h1 class="name">svelte-mosa<span class="i">i</span>c</h1>
+			<p>svelte's w<span class="i">i</span>ndow manager</p>
+		</div>
 	</div>
 	<h1 class="child">streaml<span class="i">i</span>ned demo</h1>
 	<div class="icons child">
@@ -27,6 +31,11 @@
 </Node>
 
 <style>
+	.logo {
+		height: 5rem;
+		width: 5rem;
+	}
+
 	.child {
 		width: 30%;
 	}
@@ -62,9 +71,13 @@
 
 	.title {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		margin: 0.5rem 1rem;
 		justify-content: left;
+	}
+
+	.description {
+		flex-direction: column;
 	}
 
 	.i {
