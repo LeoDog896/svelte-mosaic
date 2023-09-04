@@ -59,9 +59,10 @@
 </script>
 
 <svelte:window
-	on:mousedown|preventDefault={(event) => {
+	on:mousedown={(event) => {
 		if (event.target == handle) {
 			isDragging = true;
+			event.preventDefault();
 		}
 	}}
 	on:mouseup={(event) => {
@@ -69,8 +70,10 @@
 			isDragging = false;
 		}
 	}}
-	on:mousemove|preventDefault={({ clientX, clientY }) => {
+	on:mousemove={({ clientX, clientY, preventDefault }) => {
 		if (isDragging) {
+			preventDefault();
+			
 			// Get offset
 			const containerOffset = direction === 'horizontal' ? wrapper.offsetLeft : wrapper.offsetTop;
 
