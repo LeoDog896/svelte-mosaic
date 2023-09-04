@@ -70,9 +70,10 @@
 			isDragging = false;
 		}
 	}}
-	on:mousemove={({ clientX, clientY, preventDefault }) => {
+	on:mousemove={(event) => {
+		const { clientX, clientY } = event;
 		if (isDragging) {
-			preventDefault();
+			event.preventDefault();
 			
 			// Get offset
 			const containerOffset = direction === 'horizontal' ? wrapper.offsetLeft : wrapper.offsetTop;
