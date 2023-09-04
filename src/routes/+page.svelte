@@ -7,12 +7,12 @@
 </script>
 
 <header>
-	<div class="title">
+	<div class="title child">
 		<h1 class="name">svelte-mosa<span class="i">i</span>c</h1>
 		<p>svelte's w<span class="i">i</span>ndow manager</p>
 	</div>
-	<h1>demo: streaml<span class="i">i</span>ned</h1>
-	<div class="icons">
+	<h1 class="child">streaml<span class="i">i</span>ned demo</h1>
+	<div class="icons child">
 		<a href="https://github.com/LeoDog896/svelte-mosaic"><DiGithubBadge /></a>
 		<a href="https://npmjs.com/package/svelte-mosaic"><DiNpm /></a>
 	</div>
@@ -27,6 +27,15 @@
 </Node>
 
 <style>
+	.child {
+		width: 30%;
+	}
+
+	h1.child {
+		justify-content: center;
+		text-align: center;
+	}
+
 	header {
 		background-color: #007991;
 		color: white;
@@ -42,6 +51,7 @@
 		flex-direction: row;
 		align-items: center;
 		margin-right: 1rem;
+		justify-content: right;
 	}
 
 	a {
@@ -54,6 +64,7 @@
 		display: flex;
 		flex-direction: column;
 		margin: 0.5rem 1rem;
+		justify-content: left;
 	}
 
 	.i {
