@@ -7,28 +7,32 @@
 	import Window from './Window.svelte';
 </script>
 
-<header>
-	<div class="title child">
-		<img src={FaviconLight} class="logo" alt="Svelte logo" />
-		<div class="description">
-			<h1 class="name">svelte-mosa<span class="i">i</span>c</h1>
-			<p>svelte's w<span class="i">i</span>ndow manager</p>
+<div class="container">
+	<header>
+		<div class="title child">
+			<img src={FaviconLight} class="logo" alt="Svelte logo" />
+			<div class="description">
+				<h1 class="name">svelte-mosa<span class="i">i</span>c</h1>
+				<p>svelte's w<span class="i">i</span>ndow manager</p>
+			</div>
 		</div>
-	</div>
-	<h1 class="child">streaml<span class="i">i</span>ned demo</h1>
-	<div class="icons child">
-		<a href="https://github.com/LeoDog896/svelte-mosaic"><DiGithubBadge /></a>
-		<a href="https://npmjs.com/package/svelte-mosaic"><DiNpm /></a>
-	</div>
-</header>
+		<h1 class="child">streaml<span class="i">i</span>ned demo</h1>
+		<div class="icons child">
+			<a href="https://github.com/LeoDog896/svelte-mosaic"><DiGithubBadge /></a>
+			<a href="https://npmjs.com/package/svelte-mosaic"><DiNpm /></a>
+		</div>
+	</header>
 
-<Node direction="horizontal">
-	<Window slot="alpha" number={1} />
-	<Node slot="beta" direction="vertical">
-		<Window slot="alpha" number={2} />
-		<Window slot="beta" number={3} />
-	</Node>
-</Node>
+	<div class="node-container">
+		<Node direction="horizontal">
+			<Window slot="alpha" number={1} />
+			<Node slot="beta" direction="vertical">
+				<Window slot="alpha" number={2} />
+				<Window slot="beta" number={3} />
+			</Node>
+		</Node>
+	</div>
+</div>
 
 <style>
 	.logo {
@@ -91,5 +95,16 @@
 
 	p {
 		margin: 0;
+	}
+
+	.container {
+		height: 100vh;
+		width: 100vw;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.node-container {
+		flex-grow: 1;
 	}
 </style>

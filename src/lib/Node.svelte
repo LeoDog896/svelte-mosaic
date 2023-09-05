@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
-    export const nodeTrackerKey = "data-svelte-mosaic-node";
+	export const nodeTrackerKey = 'data-svelte-mosaic-node';
 
-	/** 
+	/**
 	 * Represents a full binary tree.
 	 * The reason why mosaic uses a full binary tree
 	 * is because if a node has only one child, then
@@ -11,22 +11,22 @@
 		id: string;
 		children: [Node, Node] | undefined;
 		parent: Node | null;
-	}
+	};
 
 	type Entry = {
 		node: Node;
 		element: HTMLElement;
-	}
+	};
 
 	export const parents = new Map<string, Entry>();
 
-    export function getNodeParent(self: HTMLElement): HTMLElement | null {
-        return self.closest(`[${nodeTrackerKey}]`);
-    }
+	export function getNodeParent(self: HTMLElement): HTMLElement | null {
+		return self.closest(`[${nodeTrackerKey}]`);
+	}
 </script>
 
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { onMount } from 'svelte';
 
 	/** The orientation of the element */
 	export let direction: 'horizontal' | 'vertical';
@@ -52,7 +52,7 @@
 				element: wrapper
 			});
 		}
-	})
+	});
 
 	let isDragging = false;
 	let width: number | undefined = undefined;
@@ -74,7 +74,7 @@
 		const { clientX, clientY } = event;
 		if (isDragging) {
 			event.preventDefault();
-			
+
 			// Get offset
 			const containerOffset = direction === 'horizontal' ? wrapper.offsetLeft : wrapper.offsetTop;
 

@@ -39,7 +39,10 @@ test('dragbar can be dragged', async ({ page }) => {
 
 	await page.mouse.move(dragbarBox.x + dragbarBox.width / 2, dragbarBox.y + dragbarBox.height / 2);
 	await page.mouse.down();
-	await page.mouse.move(dragbarBox.x + dragbarBox.width / 2 + 100, dragbarBox.y + dragbarBox.height / 2);
+	await page.mouse.move(
+		dragbarBox.x + dragbarBox.width / 2 + 100,
+		dragbarBox.y + dragbarBox.height / 2
+	);
 	await page.mouse.up();
 
 	// check if the bar has moved
@@ -48,6 +51,6 @@ test('dragbar can be dragged', async ({ page }) => {
 	if (!newDragBarX) {
 		return;
 	}
-	 
+
 	expect(newDragBarX).toBeGreaterThan(oldDragBarX);
 });
