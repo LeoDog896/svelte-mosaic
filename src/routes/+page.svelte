@@ -26,7 +26,7 @@
 	<div class="node-container">
 		<Node direction="horizontal" alphaSize={[200]} betaSize={[200]}>
 			<Window slot="alpha" number={1} />
-			<Node slot="beta" direction="vertical" alphaSize={[400]} betaSize={[400]}>
+			<Node slot="beta" direction="vertical" alphaSize={[250]} betaSize={[300]}>
 				<Window slot="alpha" number={2} />
 				<Window slot="beta" number={3} />
 			</Node>
