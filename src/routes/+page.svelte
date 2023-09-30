@@ -24,9 +24,9 @@
 	</header>
 
 	<div class="node-container">
-		<Node direction="horizontal">
+		<Node direction="horizontal" alphaSize={[200]} betaSize={[200]}>
 			<Window slot="alpha" number={1} />
-			<Node slot="beta" direction="vertical">
+			<Node slot="beta" direction="vertical" alphaSize={[400]} betaSize={[400]}>
 				<Window slot="alpha" number={2} />
 				<Window slot="beta" number={3} />
 			</Node>

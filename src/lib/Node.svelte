@@ -31,6 +31,9 @@
 	/** The orientation of the element */
 	export let direction: 'horizontal' | 'vertical';
 
+	export let alphaSize: [min?: number, max?: number] = [undefined, undefined];
+	export let betaSize: [min?: number, max?: number] = [undefined, undefined];
+
 	let wrapper: HTMLDivElement;
 	let alpha: HTMLDivElement;
 	let handle: HTMLDivElement;
@@ -82,10 +85,23 @@
 			const pos = direction === 'horizontal' ? clientX : clientY;
 			const pointerRelativePos = pos - containerOffset;
 
+			const containerSize = direction === 'horizontal' ? wrapper.clientWidth : wrapper.clientHeight;
+
+			const alphaBoundedSize = Math.max(
+				0,
+				alphaSize[0] ?? 0,
+				Math.min(pointerRelativePos - 4, alphaSize[1] ?? Infinity)
+			);
+			// size is the alpha bounded size which is bounded by the beta size
+			const size = Math.max(
+				containerSize - (betaSize[1] ?? containerSize),
+				Math.min(containerSize - (betaSize[0] ?? 0), alphaBoundedSize)
+			);
+
 			if (direction === 'horizontal') {
-				alpha.style.width = pointerRelativePos - 4 + 'px';
+				alpha.style.width = size + 'px';
 			} else {
-				alpha.style.height = pointerRelativePos - 4 + 'px';
+				alpha.style.height = size + 'px';
 			}
 
 			alpha.style.flexGrow = '0';
