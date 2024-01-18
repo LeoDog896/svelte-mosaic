@@ -1,33 +1,4 @@
-<script lang="ts" context="module">
-	export const nodeTrackerKey = 'data-svelte-mosaic-node';
-
-	/**
-	 * Represents a full binary tree.
-	 * The reason why mosaic uses a full binary tree
-	 * is because if a node has only one child, then
-	 * it's redundant and can be removed.
-	 */
-	type Node = {
-		id: string;
-		children: [Node, Node] | undefined;
-		parent: Node | null;
-	};
-
-	type Entry = {
-		node: Node;
-		element: HTMLElement;
-	};
-
-	export const parents = new Map<string, Entry>();
-
-	export function getNodeParent(self: HTMLElement): HTMLElement | null {
-		return self.closest(`[${nodeTrackerKey}]`);
-	}
-</script>
-
 <script lang="ts">
-	import { onMount } from 'svelte';
-
 	/** The orientation of the element */
 	export let direction: 'horizontal' | 'vertical';
 
@@ -37,25 +8,6 @@
 	let wrapper: HTMLDivElement;
 	let alpha: HTMLDivElement;
 	let handle: HTMLDivElement;
-
-	onMount(() => {
-		// find the parent node (if any)
-		const parent = getNodeParent(wrapper);
-
-		if (parent === null) {
-			// tag the node as a parent mosaic node
-			const uuid = crypto.randomUUID();
-			wrapper.setAttribute(nodeTrackerKey, uuid);
-			parents.set(uuid, {
-				node: {
-					id: uuid,
-					children: undefined,
-					parent: null
-				},
-				element: wrapper
-			});
-		}
-	});
 
 	let isDragging = false;
 	let width: number | undefined = undefined;

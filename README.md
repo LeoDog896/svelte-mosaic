@@ -19,18 +19,22 @@ For example, the following creates a Node with the following structure:
 ```
 
 ```svelte
-<Node direction="horizontal">
-	<Window slot="alpha" number={1} />
-	<Node slot="beta" direction="vertical">
-		<Window slot="alpha" number={2} />
-		<Window slot="beta" number={3} />
-	</Node>
-</Node>
+<script>
+	import { Mosaic, branch } from 'svelte-mosaic';
+
+	const tree = branch({
+		direction: "horizontal",
+		alpha: { component: Window, number: 1 },
+		beta: branch({
+			direction: "vertical",
+			alpha: { component: Window, number: 2 },
+			beta: { component: Window, number: 3 }
+		})
+	})
+</script>
+
+<Mosaic {tree}>
 ```
-
-### Illegal structures
-
-:x: A `Node` cannot have more than two children.
 
 ### Internals
 

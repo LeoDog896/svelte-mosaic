@@ -3,8 +3,18 @@
 	import DiNpm from 'svelte-icons/di/DiNpm.svelte';
 	import FaviconLight from './favicon-light.png';
 
-	import Node from '$lib';
+	import { Mosaic, type Tree, branch } from '$lib';
 	import Window from './Window.svelte';
+
+	let tree: Tree = branch({
+		direction: "horizontal",
+		alpha: { component: Window, number: 1 },
+		beta: branch({
+			direction: "vertical",
+			alpha: { component: Window, number: 2 },
+			beta: { component: Window, number: 3 }
+		})
+	})
 </script>
 
 <div class="container">
@@ -24,13 +34,7 @@
 	</header>
 
 	<div class="node-container">
-		<Node direction="horizontal" alphaSize={[200]} betaSize={[200]}>
-			<Window slot="alpha" number={1} />
-			<Node slot="beta" direction="vertical" alphaSize={[250]} betaSize={[300]}>
-				<Window slot="alpha" number={2} />
-				<Window slot="beta" number={3} />
-			</Node>
-		</Node>
+		<Mosaic {tree} />
 	</div>
 </div>
 
