@@ -9,10 +9,14 @@
 	let tree: Tree = branch({
 		direction: "horizontal",
 		alpha: { component: Window, number: 1 },
+		alphaSize: [200],
+		betaSize: [200],
 		beta: branch({
 			direction: "vertical",
 			alpha: { component: Window, number: 2 },
-			beta: { component: Window, number: 3 }
+			beta: { component: Window, number: 3 },
+			alphaSize: [250],
+			betaSize: [300]
 		})
 	})
 </script>

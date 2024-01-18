@@ -11,6 +11,8 @@ export interface Tree {
     alpha: Tree | Component;
     beta: Tree | Component;
     direction: 'horizontal' | 'vertical';
+    alphaSize?: [min?: number, max?: number],
+    betaSize?: [min?: number, max?: number]
     [treeMarker]: true;
 }
 

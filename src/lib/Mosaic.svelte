@@ -5,7 +5,7 @@
     export let tree: Tree;
 </script>
 
-<Node direction={tree.direction}>
+<Node direction={tree.direction} betaSize={tree.betaSize} alphaSize={tree.alphaSize}>
     <div slot="alpha">
         {#if isTree(tree.alpha)}
             <svelte:self tree={tree.alpha} />
