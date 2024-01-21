@@ -25,11 +25,11 @@ For example, the following creates a Node with the following structure:
 	const tree = branch({
 		direction: "horizontal",
 		alpha: { component: Window, number: 1 },
-		beta: branch({
+		beta: {
 			direction: "vertical",
 			alpha: { component: Window, number: 2 },
 			beta: { component: Window, number: 3 }
-		})
+		}
 	})
 </script>
 
