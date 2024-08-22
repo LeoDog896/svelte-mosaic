@@ -7,18 +7,18 @@
 	import Window from './Window.svelte';
 
 	let tree: Tree = branch({
-		direction: "horizontal",
+		direction: 'horizontal',
 		alpha: { component: Window, props: { number: 1 } },
 		alphaSize: [200],
 		betaSize: [200],
 		beta: branch({
-			direction: "vertical",
+			direction: 'vertical',
 			alpha: { component: Window, props: { number: 2 } },
 			beta: { component: Window, props: { number: 3 } },
 			alphaSize: [250],
 			betaSize: [300]
 		})
-	})
+	});
 </script>
 
 <div class="container">
