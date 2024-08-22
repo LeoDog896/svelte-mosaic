@@ -65,5 +65,8 @@
 	"peerDependencies": {
 		"svelte": ">=4.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"svelte-splitpanes": "^8.0.5"
+	}
 }

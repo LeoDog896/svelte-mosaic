@@ -1,5 +1,4 @@
-import Node from './Node.svelte';
 import Mosaic from './Mosaic.svelte';
-import { type Tree, branch } from './tree';
+import { type Tree } from './tree';
 
-export { Node, Mosaic, type Tree, branch };
+export { Mosaic, type Tree };
