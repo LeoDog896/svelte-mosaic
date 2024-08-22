@@ -40,9 +40,9 @@
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-    "dependencies": {
-      "svelte-splitpanes": "0.8.2"
-    },
+	"dependencies": {
+		"svelte-splitpanes": "0.8.2"
+	},
 	"devDependencies": {
 		"@fontsource-variable/jetbrains-mono": "^5.0.9",
 		"@playwright/test": "^1.28.1",
