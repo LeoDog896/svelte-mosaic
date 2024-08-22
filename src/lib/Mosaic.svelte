@@ -10,14 +10,14 @@
         {#if isTree(tree.alpha)}
             <svelte:self tree={tree.alpha} />
         {:else}
-            <svelte:component this={tree.alpha.component} {...tree.alpha} />
+            <svelte:component this={tree.alpha.component} {...tree.alpha.props} />
         {/if}
     </div>
     <div slot="beta">
         {#if isTree(tree.beta)}
             <svelte:self tree={tree.beta} />
         {:else}
-            <svelte:component this={tree.beta.component} {...tree.beta} />
+            <svelte:component this={tree.beta.component} {...tree.beta.props} />
         {/if}
     </div>
 </Node>

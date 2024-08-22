@@ -1,10 +1,10 @@
-import type { ComponentType, SvelteComponent } from 'svelte';
+import type { ComponentProps, ComponentType, SvelteComponent } from 'svelte';
 
 const treeMarker = Symbol('isTree')
 
-type Component = {
-    [key: string]: unknown,
-    component: ComponentType<SvelteComponent>,
+type Component<T extends SvelteComponent = SvelteComponent> = {
+    props: ComponentProps<T>,
+    component: ComponentType<T>,
 }
 
 export interface Tree {
