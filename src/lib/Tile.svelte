@@ -13,10 +13,8 @@
 	// Prevents initial from being unnecessarily reactive
 	const getInitial = () => {
 		if (sizeParsed?.initial) {
-			console.log(tile.size, sizeParsed, containerSizePx)
 			return sizeParsed.initial * 100;
 		} else if (siblingSizeParsed?.initial) {
-			console.log(tile.size, siblingSizeParsed.initial)
 			return (1 - siblingSizeParsed.initial) * 100;
 		} else {
 			return undefined;
