@@ -3,27 +3,28 @@
 	import DiNpm from 'svelte-icons/di/DiNpm.svelte';
 	import FaviconLight from './favicon-light.png';
 
-	import { Mosaic, type Tree } from '$lib';
+	import { Mosaic, type Branch } from '$lib';
 	import Window from './Window.svelte';
 
-	let tree: Tree = {
-		direction: 'horizontal',
+	let tree: Branch = {
 		alpha: {
 			component: Window,
 			props: { number: 1 },
-			size: { min: '200px' }
+			size: { min: '200px', initial: '300px' }
 		},
 		beta: {
-			direction: 'vertical',
-			alpha: {
-				component: Window,
-				props: { number: 2 },
-				size: { min: '250px' }
-			},
-			beta: {
-				component: Window,
-				props: { number: 3 },
-				size: { min: '300px' }
+			branch: {
+				horizontal: true,
+				alpha: {
+					component: Window,
+					props: { number: 2 },
+					size: { min: '250px' }
+				},
+				beta: {
+					component: Window,
+					props: { number: 3 },
+					size: { min: '300px' }
+				}
 			},
 			size: { min: '200px' }
 		}

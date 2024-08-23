@@ -1,27 +1,31 @@
 import type { ComponentProps, ComponentType, SvelteComponent } from 'svelte';
+import type { Splitpanes } from 'svelte-splitpanes';
 
 type Component<T extends SvelteComponent = SvelteComponent> = {
 	props: ComponentProps<T>;
 	component: ComponentType<T>;
 };
 
-type Unit = 'px' | '%';
+type SizeUnit = 'px' | '%';
 
-type Size = `${number}${Unit}`;
+type Size = `${number}${SizeUnit}`;
 
-type SizeRange = undefined | Size | { min?: Size; max?: Size };
+type SizeRange = undefined | Size | { min?: Size; max?: Size; initial?: Size };
 
-type Tile = (Tree | Component) & { size: SizeRange };
+export type Tile = ({ branch: Branch } | Component) & {
+	size: SizeRange;
+	snapSize?: Size;
+	class?: string;
+};
 
-export interface Tree {
+export type Branch = {
 	alpha: Tile;
 	beta: Tile;
-	direction: 'horizontal' | 'vertical';
-}
+} & ComponentProps<Splitpanes>;
 
 // Parses the size to a percentage of the container size
-function parseSize(size: Size, containerSizePx: number) {
-	const parts = size.match(/(\d*\.?\d+)(px|%)/) as [string, string, Unit];
+export function parseSize(size: Size, containerSizePx: number) {
+	const parts = size.match(/(\d*\.?\d+)(px|%)/) as [string, string, SizeUnit];
 	const value = Number(parts[1]);
 	return parts[2] === '%' ? value : (value / containerSizePx) * 100;
 }
@@ -29,16 +33,25 @@ function parseSize(size: Size, containerSizePx: number) {
 export function parseSizeRange(
 	sizeRange: SizeRange,
 	containerSize: number
-): { min: number; max: number } {
-	if (sizeRange === undefined) return { min: 0, max: containerSize };
+): { min: number; max: number; initial?: number } {
+	if (sizeRange === undefined) return { min: 0, max: 100 };
 	if (typeof sizeRange === 'object') {
-		return {
-			min: sizeRange.min ? parseSize(sizeRange.min, containerSize) : 0,
-			max: sizeRange.max ? parseSize(sizeRange.max, containerSize) : 100
-		};
+		const min = sizeRange.min ? parseSize(sizeRange.min, containerSize) : 0;
+		const max = sizeRange.max ? parseSize(sizeRange.max, containerSize) : 100;
+		let initial: undefined | number;
+		if (sizeRange.initial !== undefined) {
+			initial = parseSize(sizeRange.initial, containerSize);
+		} else if (min > 50) {
+			initial = min;
+		} else if (max < 50) {
+			initial = max;
+		}
+		return { min, max, initial };
 	}
+	const fixedSize = parseSize(sizeRange, containerSize);
 	return {
-		min: parseSize(sizeRange, containerSize),
-		max: parseSize(sizeRange, containerSize)
+		min: fixedSize,
+		max: fixedSize,
+		initial: fixedSize
 	};
 }
