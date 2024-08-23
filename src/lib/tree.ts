@@ -23,11 +23,33 @@ export type Branch = {
 	beta: Tile;
 } & ComponentProps<Splitpanes>;
 
-// Parses the size to a percentage of the container size
+/**
+ * Converts a unit into a function that converts
+ * that type into the percentage of the container size.
+ * 
+ * Will throw an error if unit is not in the UnitType union.
+ */
+function parseUnit(unit: string): (containerSizePx: number, value: number) => number {
+	switch (unit) {
+		case "px":
+			return (containerSize, value) => value / containerSize;
+		case "%":
+			return (_, value) => value;
+		default:
+			throw new Error(`Invalid unit ${unit}`); 
+	}
+}
+
+/** Parses the given unit size to a percentage of the container size. */
 export function parseSize(size: Size, containerSizePx: number) {
-	const parts = size.match(/(\d*\.?\d+)(px|%)/) as [string, string, SizeUnit];
-	const value = Number(parts[1]);
-	return parts[2] === '%' ? value : (value / containerSizePx) * 100;
+	const index = [...size].findIndex(char => isNaN(Number(char)) && char !== '.');
+
+	const number = Number(size.slice(0, index));
+	console.assert(!Number.isNaN(number), `Number(${size.slice(0, index)}) is NaN - please report this.`);
+
+	const unit = parseUnit(size.slice(index));
+
+	return unit(containerSizePx, number);
 }
 
 export function parseSizeRange(
