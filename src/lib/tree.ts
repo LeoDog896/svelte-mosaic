@@ -45,10 +45,15 @@ export function parseSize(size: Size, containerSizePx: number) {
 	const index = [...size].findIndex((char) => isNaN(Number(char)) && char !== '.');
 
 	const number = Number(size.slice(0, index));
-	console.assert(
-		!Number.isNaN(number),
-		`Number(${size.slice(0, index)}) is NaN - please report this.`
-	);
+
+	if (Number.isNaN(number)) {
+		const originatingString = size.slice(0, index);
+		if (originatingString.indexOf('.') != originatingString.lastIndexOf('.')) {
+			throw new Error(`${originatingString} should not have multiple '.' in the string.`);
+		}
+
+		throw new Error(`Number(${size.slice(0, index)}) is NaN - please report this.`);
+	}
 
 	const unit = parseUnit(size.slice(index));
 
