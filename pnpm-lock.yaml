@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      svelte-splitpanes:
-        specifier: 0.8.2
-        version: 0.8.2(svelte@4.2.18)
     devDependencies:
       '@fontsource-variable/jetbrains-mono':
         specifier: ^5.0.9
@@ -672,9 +668,6 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
 
-  esm-env-robust@0.0.3:
-    resolution: {integrity: sha512-90Gnuw2DALOqlL1581VxP3GHPUNHX9U+fQ+8FNcTTFClhY5gEggAAnJ3q1b2Oq23knRsjv8YpNeMRPaMLUymOA==}
-
   esm-env@1.0.0:
     resolution: {integrity: sha512-Cf6VksWPsTuW01vU9Mk/3vRue91Zevka5SjyNf3nEpokFRuqt/KjUQoGAwq9qMmhpLTHmXzSIrFRw8zxWzmFBA==}
 
@@ -1226,11 +1219,6 @@ packages:
         optional: true
       typescript:
         optional: true
-
-  svelte-splitpanes@0.8.2:
-    resolution: {integrity: sha512-4OwpNFwkc4cU9xTXnZegmHECWM1GFATbJcAJ1bFzF6dW4pgAYSoBzmCxMiFeH6eqE6He8ZJunfv8lqSANmFCeQ==}
-    peerDependencies:
-      svelte: ^4.2.18
 
   svelte2tsx@0.7.15:
     resolution: {integrity: sha512-91RbLJI448FR1UEZqXSS3ucVMERuWo8ACOhxfkBPK1CL2ocGMOC5bwc8tzFvb/Ji8NqZ7wmSGfvRebcUsiauKA==}
@@ -1934,10 +1922,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  esm-env-robust@0.0.3:
-    dependencies:
-      esm-env: 1.0.0
-
   esm-env@1.0.0: {}
 
   espree@9.6.1:
@@ -2442,11 +2426,6 @@ snapshots:
       postcss: 8.4.41
       postcss-load-config: 3.1.4(postcss@8.4.41)
       typescript: 5.5.4
-
-  svelte-splitpanes@0.8.2(svelte@4.2.18):
-    dependencies:
-      esm-env-robust: 0.0.3
-      svelte: 4.2.18
 
   svelte2tsx@0.7.15(svelte@4.2.18)(typescript@5.5.4):
     dependencies:
