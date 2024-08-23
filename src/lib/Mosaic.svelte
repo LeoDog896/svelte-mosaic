@@ -15,8 +15,8 @@
 
 <div bind:clientWidth={width} bind:clientHeight={height}>
 	<Splitpanes {...splitPanesProps}>
-		<Tile tile={alpha} sibling={beta} {containerSizePx} />
-		<Tile tile={beta} sibling={alpha} {containerSizePx} />
+		<Tile tile={alpha} {containerSizePx} />
+		<Tile tile={beta} {containerSizePx} />
 	</Splitpanes>
 </div>
 

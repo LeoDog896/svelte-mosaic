@@ -4,22 +4,12 @@
 	import Mosaic from '$lib/Mosaic.svelte';
 
 	export let tile: Tile;
-	export let sibling: Tile;
 	export let containerSizePx: number | undefined;
 
 	$: sizeParsed = containerSizePx ? parseSizeRange(tile.size, containerSizePx) : undefined;
-	$: siblingSizeParsed = containerSizePx ? parseSizeRange(sibling.size, containerSizePx) : undefined;
 
 	// Prevents initial from being unnecessarily reactive
-	const getInitial = () => {
-		if (sizeParsed?.initial) {
-			return sizeParsed.initial * 100;
-		} else if (siblingSizeParsed?.initial) {
-			return (1 - siblingSizeParsed.initial) * 100;
-		} else {
-			return undefined;
-		}
-	};
+	const getInitial = () => sizeParsed?.initial ? sizeParsed.initial * 100 : undefined;
 
 	$: initial = containerSizePx && getInitial();
 </script>
