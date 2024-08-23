@@ -1,29 +1,27 @@
 <script lang="ts">
-	import Node from '$lib/Node.svelte';
-	import { type Tree, isTree } from '$lib/tree';
+	import { type Branch } from '$lib/tree';
+	import { Splitpanes } from 'svelte-splitpanes';
+	import Tile from '$lib/Tile.svelte';
 
-	export let tree: Tree;
+	export let tree: Branch;
+	$: ({ alpha, beta, ...splitPanesProps } = tree);
+
+	let height: number | undefined;
+	let width: number | undefined;
+
+	$: containerSizePx = tree.horizontal ? height : width;
 </script>
 
-<Node direction={tree.direction} betaSize={tree.betaSize} alphaSize={tree.alphaSize}>
-	<div slot="alpha">
-		{#if isTree(tree.alpha)}
-			<svelte:self tree={tree.alpha} />
-		{:else}
-			<svelte:component this={tree.alpha.component} {...tree.alpha.props} />
-		{/if}
-	</div>
-	<div slot="beta">
-		{#if isTree(tree.beta)}
-			<svelte:self tree={tree.beta} />
-		{:else}
-			<svelte:component this={tree.beta.component} {...tree.beta.props} />
-		{/if}
-	</div>
-</Node>
+<div bind:clientWidth={width} bind:clientHeight={height}>
+	<Splitpanes {...splitPanesProps}>
+		<Tile tile={alpha} {containerSizePx} />
+		<Tile tile={beta} {containerSizePx} />
+	</Splitpanes>
+</div>
 
 <style>
 	div {
-		display: contents;
+		width: 100%;
+		height: 100%;
 	}
 </style>

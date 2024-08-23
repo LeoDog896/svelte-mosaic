@@ -20,20 +20,33 @@ For example, the following creates a Node with the following structure:
 
 ```svelte
 <script>
-	import { Mosaic, branch } from 'svelte-mosaic';
+	import { Mosaic, type Tree } from 'svelte-mosaic';
 
-	const tree = branch({
-		direction: "horizontal",
-		alpha: { component: Window, props: { number: 1 } },
-		beta: branch({
-			direction: "vertical",
-			alpha: { component: Window, props: { number: 2 } },
-			beta: { component: Window, props: { number: 3 } }
-		})
-	})
+	const tree: Tree = {
+		direction: 'horizontal',
+		alpha: {
+			component: Window,
+			props: { number: 1 },
+			size: { min: '200px' }
+		},
+		beta: {
+			direction: 'vertical',
+			alpha: {
+				component: Window,
+				props: { number: 2 },
+				size: { min: '250px' }
+			},
+			beta: {
+				component: Window,
+				props: { number: 3 },
+				size: { min: '300px' }
+			},
+			size: { min: '200px' }
+		}
+	};
 </script>
 
-<Mosaic {tree}>
+<Mosaic {tree} />
 ```
 
 ### Internals
