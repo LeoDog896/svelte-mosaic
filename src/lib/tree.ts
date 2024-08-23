@@ -26,26 +26,29 @@ export type Branch = {
 /**
  * Converts a unit into a function that converts
  * that type into the percentage of the container size.
- * 
+ *
  * Will throw an error if unit is not in the UnitType union.
  */
 function parseUnit(unit: string): (containerSizePx: number, value: number) => number {
 	switch (unit) {
-		case "px":
+		case 'px':
 			return (containerSize, value) => value / containerSize;
-		case "%":
+		case '%':
 			return (_, value) => value;
 		default:
-			throw new Error(`Invalid unit ${unit}`); 
+			throw new Error(`Invalid unit ${unit}`);
 	}
 }
 
 /** Parses the given unit size to a percentage of the container size. */
 export function parseSize(size: Size, containerSizePx: number) {
-	const index = [...size].findIndex(char => isNaN(Number(char)) && char !== '.');
+	const index = [...size].findIndex((char) => isNaN(Number(char)) && char !== '.');
 
 	const number = Number(size.slice(0, index));
-	console.assert(!Number.isNaN(number), `Number(${size.slice(0, index)}) is NaN - please report this.`);
+	console.assert(
+		!Number.isNaN(number),
+		`Number(${size.slice(0, index)}) is NaN - please report this.`
+	);
 
 	const unit = parseUnit(size.slice(index));
 
