@@ -9,16 +9,16 @@
 	$: sizeParsed = containerSizePx ? parseSizeRange(tile.size, containerSizePx) : undefined;
 
 	// Prevents initial from being unnecessarily reactive
-	const getInitial = () => sizeParsed?.initial ? sizeParsed.initial * 100 : undefined;
+	const getInitial = () => sizeParsed?.initial ? sizeParsed.initial : undefined;
 
 	$: initial = containerSizePx && getInitial();
 </script>
 
 <Pane
 	size={initial}
-	minSize={sizeParsed ? sizeParsed.min * 100 : 0}
-	maxSize={sizeParsed ? sizeParsed.max * 100 : 100}
-	snapSize={tile.snapSize && containerSizePx ? parseSize(tile.snapSize, containerSizePx / 2) * 100 : undefined}
+	minSize={sizeParsed ? sizeParsed.min : 0}
+	maxSize={sizeParsed ? sizeParsed.max : 100}
+	snapSize={tile.snapSize && containerSizePx ? parseSize(tile.snapSize, containerSizePx / 2) : undefined}
 	class={tile.class}
 >
 	{#if 'branch' in tile}

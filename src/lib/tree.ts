@@ -32,9 +32,9 @@ export type Branch = {
 function parseUnit(unit: string): (containerSizePx: number, value: number) => number {
 	switch (unit) {
 		case 'px':
-			return (containerSize, value) => value / containerSize;
+			return (containerSize, value) => (value / containerSize) * 100;
 		case '%':
-			return (_, value) => value / 100;
+			return (_, value) => value;
 		default:
 			throw new Error(`Invalid unit ${unit}`);
 	}
@@ -67,10 +67,10 @@ export interface ParsedSizedRange {
 }
 
 export function parseSizeRange(sizeRange: SizeRange, containerSize: number): ParsedSizedRange {
-	if (sizeRange === undefined) return { min: 0, max: 1 };
+	if (sizeRange === undefined) return { min: 0, max: 100 };
 	if (typeof sizeRange === 'object') {
 		const min = sizeRange.min ? parseSize(sizeRange.min, containerSize) : 0;
-		const max = sizeRange.max ? parseSize(sizeRange.max, containerSize) : 1;
+		const max = sizeRange.max ? parseSize(sizeRange.max, containerSize) : 100;
 		let initial: undefined | number;
 		if (sizeRange.initial !== undefined) {
 			initial = parseSize(sizeRange.initial, containerSize);
