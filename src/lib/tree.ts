@@ -34,7 +34,7 @@ function parseUnit(unit: string): (containerSizePx: number, value: number) => nu
 		case 'px':
 			return (containerSize, value) => value / containerSize;
 		case '%':
-			return (_, value) => value;
+			return (_, value) => value / 100;
 		default:
 			throw new Error(`Invalid unit ${unit}`);
 	}
@@ -60,14 +60,17 @@ export function parseSize(size: Size, containerSizePx: number) {
 	return unit(containerSizePx, number);
 }
 
-export function parseSizeRange(
-	sizeRange: SizeRange,
-	containerSize: number
-): { min: number; max: number; initial?: number } {
-	if (sizeRange === undefined) return { min: 0, max: 100 };
+export interface ParsedSizedRange {
+	min: number;
+	max: number;
+	initial?: number;
+}
+
+export function parseSizeRange(sizeRange: SizeRange, containerSize: number): ParsedSizedRange {
+	if (sizeRange === undefined) return { min: 0, max: 1 };
 	if (typeof sizeRange === 'object') {
 		const min = sizeRange.min ? parseSize(sizeRange.min, containerSize) : 0;
-		const max = sizeRange.max ? parseSize(sizeRange.max, containerSize) : 100;
+		const max = sizeRange.max ? parseSize(sizeRange.max, containerSize) : 1;
 		let initial: undefined | number;
 		if (sizeRange.initial !== undefined) {
 			initial = parseSize(sizeRange.initial, containerSize);
