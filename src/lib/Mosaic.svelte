@@ -2,7 +2,6 @@
 	import { type Branch } from '$lib/tree';
 	import { Splitpanes } from 'svelte-splitpanes';
 	import Tile from '$lib/Tile.svelte';
-	import { onMount } from 'svelte';
 
 	export let tree: Branch;
 	$: ({ alpha, beta, ...splitPanesProps } = tree);
