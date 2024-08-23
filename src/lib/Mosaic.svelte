@@ -2,12 +2,14 @@
 	import { type Branch } from '$lib/tree';
 	import { Splitpanes } from 'svelte-splitpanes';
 	import Tile from '$lib/Tile.svelte';
+	import { onMount } from 'svelte';
 
 	export let tree: Branch;
 	$: ({ alpha, beta, ...splitPanesProps } = tree);
 
-	let height: number = Number.MAX_SAFE_INTEGER;
-	let width: number = Number.MAX_SAFE_INTEGER;
+	let height: number | undefined;
+	let width: number | undefined;
+
 	$: containerSizePx = tree.horizontal ? height : width;
 </script>
 

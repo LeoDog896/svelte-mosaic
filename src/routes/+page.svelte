@@ -10,7 +10,7 @@
 		alpha: {
 			component: Window,
 			props: { number: 1 },
-			size: { min: '200px', initial: '300px' }
+			size: { min: '200px', initial: '400px' }
 		},
 		beta: {
 			branch: {

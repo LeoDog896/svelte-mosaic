@@ -2,40 +2,35 @@
 	import { parseSize, parseSizeRange, type Tile } from '$lib/tree.js';
 	import { Pane } from 'svelte-splitpanes';
 	import Mosaic from '$lib/Mosaic.svelte';
-	import { onMount } from 'svelte';
 
 	export let tile: Tile;
 	export let sibling: Tile;
-	export let containerSizePx: number;
+	export let containerSizePx: number | undefined;
 
-	let mountSymbol: symbol | undefined;
-
-	$: sizeParsed = mountSymbol && parseSizeRange(tile.size, containerSizePx);
-	$: siblingSizeParsed = mountSymbol && parseSizeRange(sibling.size, containerSizePx);
+	$: sizeParsed = containerSizePx ? parseSizeRange(tile.size, containerSizePx) : undefined;
+	$: siblingSizeParsed = containerSizePx ? parseSizeRange(sibling.size, containerSizePx) : undefined;
 
 	// Prevents initial from being unnecessarily reactive
 	const getInitial = () => {
 		if (sizeParsed?.initial) {
+			console.log(tile.size, sizeParsed, containerSizePx)
 			return sizeParsed.initial * 100;
 		} else if (siblingSizeParsed?.initial) {
+			console.log(tile.size, siblingSizeParsed.initial)
 			return (1 - siblingSizeParsed.initial) * 100;
 		} else {
 			return undefined;
 		}
 	};
 
-	$: initial = mountSymbol && getInitial();
-
-	onMount(() => {
-		mountSymbol = Symbol();
-	});
+	$: initial = containerSizePx && getInitial();
 </script>
 
 <Pane
 	size={initial}
 	minSize={sizeParsed ? sizeParsed.min * 100 : 0}
 	maxSize={sizeParsed ? sizeParsed.max * 100 : 100}
-	snapSize={tile.snapSize ? parseSize(tile.snapSize, containerSizePx / 2) * 100 : undefined}
+	snapSize={tile.snapSize && containerSizePx ? parseSize(tile.snapSize, containerSizePx / 2) * 100 : undefined}
 	class={tile.class}
 >
 	{#if 'branch' in tile}
