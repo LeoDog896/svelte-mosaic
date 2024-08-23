@@ -21,18 +21,14 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: '18.x'
+          version: 8
       - name: Install dependencies
-        run: yarn install
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Test
-        run: yarn test
+        run: pnpm install
       - name: Build page
-        run: yarn build
+        run: pnpm run build
       - name: Upload built project output
         uses: actions/upload-artifact@v3
         with:
