@@ -5,7 +5,9 @@
 
 	import { Mosaic, type Tree, branch } from '$lib';
 	import Window from './Window.svelte';
-
+	const myFunction = () => {
+		console.log('cav');
+	};
 	let tree: Tree = branch({
 		direction: 'horizontal',
 		alpha: { component: Window, props: { number: 1 } },
@@ -16,13 +18,16 @@
 			alpha: { component: Window, props: { number: 2 } },
 			beta: { component: Window, props: { number: 3 } },
 			alphaSize: [250],
-			betaSize: [300]
-		})
+			betaSize: [300],
+			onSizeChange: () => console.log('size change')
+		}),
+		onSizeChange: () => console.log('size change')
 	});
 </script>
 
 <div class="container">
 	<header>
+		<button on:click={() => console.log(tree)}>Print tree</button>
 		<div class="title child">
 			<img src={FaviconLight} class="logo" alt="Svelte logo" />
 			<div class="description">

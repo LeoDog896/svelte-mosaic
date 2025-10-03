@@ -1,16 +1,24 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
+	import type { Snippet } from 'svelte';
 
 	interface Props {
 		/** The orientation of the element */
 		direction: 'horizontal' | 'vertical';
 		alphaSize?: [min?: number, max?: number];
 		betaSize?: [min?: number, max?: number];
-		alpha: Snippet,
-		beta: Snippet
+		alpha: Snippet;
+		beta: Snippet;
+		onSizeChange(): void;
 	}
 
-	const { direction, alphaSize = [undefined, undefined], betaSize = [undefined, undefined], alpha, beta }: Props = $props()
+	const {
+		direction = 'vertical',
+		alphaSize = [undefined, undefined],
+		betaSize = [undefined, undefined],
+		alpha,
+		beta,
+		onSizeChange
+	}: Props = $props();
 
 	let wrapper = $state<HTMLDivElement>();
 	let alphaDiv = $state<HTMLDivElement>();
@@ -30,6 +38,7 @@
 	on:mouseup={(event) => {
 		if (event.target == handle) {
 			isDragging = false;
+			onSizeChange();
 		}
 	}}
 	on:mousemove={(event) => {
@@ -87,6 +96,7 @@
 	<div class="child">
 		{@render beta?.()}
 	</div>
+
 </div>
 
 <style>

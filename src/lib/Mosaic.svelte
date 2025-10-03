@@ -10,7 +10,7 @@
 	let { tree }: Props = $props();
 </script>
 
-<Node direction={tree.direction} betaSize={tree.betaSize} alphaSize={tree.alphaSize}>
+<Node direction={tree.direction} betaSize={tree.betaSize} alphaSize={tree.alphaSize} onSizeChange={tree.onSizeChange}>
 	{#snippet alpha()}
 		<div >
 			{#if isTree(tree.alpha)}

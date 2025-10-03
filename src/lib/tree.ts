@@ -8,6 +8,7 @@ type IComponent<T extends SvelteComponent = SvelteComponent> = {
 };
 
 export interface Tree {
+	onSizeChange: () => void;
 	alpha: Tree | IComponent;
 	beta: Tree | IComponent;
 	direction: 'horizontal' | 'vertical';
